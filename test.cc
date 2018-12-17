@@ -53,7 +53,12 @@ int main(){
 
   in+=5;
   mdindex inn(in);
-  std::cout  << ":   " 
+  std::cout  << "copied:   " 
+    << inn.current()[0] <<"   "
+    << inn.current()[1] <<"   "
+    << inn.current()[2] << std::endl;
+  inn.reset();
+  std::cout  << "reseted:   " 
     << inn.current()[0] <<"   "
     << inn.current()[1] <<"   "
     << inn.current()[2] << std::endl;
