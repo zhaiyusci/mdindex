@@ -4,7 +4,7 @@ A C++ implement of nested loop with variable dimension
 For real life computational research, 
 multi-dimension problems kill our time.
 
-Consider an *N*-dimension problem.  
+Consider an *N*-dimension problem.
 We write some codes with *N* level loops.
 
 A month later, *M*-dimension problem need to be solved.
