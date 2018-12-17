@@ -5,13 +5,13 @@ int main(){
   std::vector<int> max{2,3,4};
   mdindex in(max);
   /*
-  mdindex inn;
-  inn=in;
-  std::cout << "Assignment:   " 
-    << inn.current()[0] <<"   "
-    << inn.current()[1] <<"   "
-    << inn.current()[2] << std::endl;
-    */
+     mdindex inn;
+     inn=in;
+     std::cout << "Assignment:   " 
+     << inn.current()[0] <<"   "
+     << inn.current()[1] <<"   "
+     << inn.current()[2] << std::endl;
+     */
 
 
   std::cout << "increment operator" << std::endl;
@@ -35,21 +35,30 @@ int main(){
 
   std::cout <<"+= -="<<std::endl;
   std::cout <<"current"<<std::endl;
-    std::cout  << ":   " 
-      << in.current()[0] <<"   "
-      << in.current()[1] <<"   "
-      << in.current()[2] << std::endl;
+  std::cout  << ":   " 
+    << in.current()[0] <<"   "
+    << in.current()[1] <<"   "
+    << in.current()[2] << std::endl;
   in+=3;
 
-    std::cout  << ":   " 
-      << in.current()[0] <<"   "
-      << in.current()[1] <<"   "
-      << in.current()[2] << std::endl;
+  std::cout  << ":   " 
+    << in.current()[0] <<"   "
+    << in.current()[1] <<"   "
+    << in.current()[2] << std::endl;
   in-=3;
-    std::cout  << ":   " 
-      << in.current()[0] <<"   "
-      << in.current()[1] <<"   "
-      << in.current()[2] << std::endl;
+  std::cout  << ":   " 
+    << in.current()[0] <<"   "
+    << in.current()[1] <<"   "
+    << in.current()[2] << std::endl;
+
+  in+=5;
+  mdindex inn(in);
+  std::cout  << ":   " 
+    << inn.current()[0] <<"   "
+    << inn.current()[1] <<"   "
+    << inn.current()[2] << std::endl;
+
+
 
 
   return 0;

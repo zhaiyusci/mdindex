@@ -13,7 +13,12 @@ class mdindex{
     max_(max), current_(max.size(),0), totalindex_(0){ 
     }
   mdindex(const mdindex& rhs):max_(rhs.max()), 
-  current_(rhs.max().size(),0), totalindex_(0){
+  current_(rhs.current()), totalindex_(rhs.totalindex()){
+  }
+
+  void reset(){
+    for(int i=0; i!=current_.size(); ++i)current_[i]=0;
+    totalindex_=0;
   }
 
   const std::vector<int> & current() const{
