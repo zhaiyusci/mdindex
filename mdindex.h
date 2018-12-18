@@ -3,32 +3,38 @@
 #include<vector>
 #include<iostream>
 class mdindex{
-  const std::vector <int> max_; 
+  const std::vector <size_t> max_; 
   // max number of each dimension, staring from 0
-  std::vector <int> current_; 
+  std::vector <size_t> current_; 
   // current indices
-  int totalindex_;
+  size_t totalindex_;
   public:
-  mdindex(const std::vector <int> &max): 
-    max_(max), current_(max.size(),0), totalindex_(0){ 
-    }
-  mdindex(const mdindex& rhs):max_(rhs.max()), 
-  current_(rhs.current()), totalindex_(rhs.totalindex()){
-  }
+  template<typename T>
+  mdindex(const std::vector <T> &max): max_(max.begin(), max.end()), current_(max.size(),0), totalindex_(0){ }
+
+  mdindex(const mdindex& rhs):max_(rhs.max_), current_(rhs.current_), totalindex_(rhs.totalindex_){ }
 
   void reset(){
-    for(int i=0; i!=current_.size(); ++i)current_[i]=0;
+    for(size_t i=0; i!=current_.size(); ++i)current_[i]=0;
     totalindex_=0;
   }
 
-  const std::vector<int> & current() const{
-    return current_;
-  }
-  const std::vector<int> & max()const {
-    return max_;
-  }
-  const int & totalindex()const {
+  const size_t & current() const{
     return totalindex_;
+  }
+
+  const size_t & current(const unsigned int & i) const{
+    return current_[i];
+  }
+
+  size_t max() const {
+    unsigned int tmp(1);
+    for(int i=0; i!= max_.size(); ++i) tmp*=max_[i];
+    return tmp;
+  }
+
+  const size_t & max(const unsigned int & i) const {
+    return max_[i];
   }
 
   mdindex& operator=(const mdindex& rhs){
@@ -73,9 +79,9 @@ class mdindex{
 
   mdindex& operator--(){ // --index
     try{
-      for(auto i=0; i!=current_.size(); ++i){
-        --current_[i];
-        if(current_[i]>=0){
+      for(size_t i=0; i!=current_.size(); ++i){
+        if(current_[i]>0){
+          --current_[i];
           --totalindex_;
           return *this;
         }else{
@@ -85,7 +91,7 @@ class mdindex{
       throw std::runtime_error("RUNTIME ERROR: OUT OF RANGE!");
     }catch(std::runtime_error e){
       std::cerr << "Max size: " ;
-      for(int i=0; i!=max_.size(); ++i) std::cerr << max_[i] <<"  " ;
+      for(size_t i=0; i!=max_.size(); ++i) std::cerr << max_[i] <<"  " ;
       std::cerr << std::endl;
       throw;
     }
@@ -100,43 +106,30 @@ class mdindex{
   mdindex operator+(const int &inc) const{
     mdindex ret=*this;
     if(inc >=0){
-      for(int i =0; i!= inc; ++i) ++ret;
+      for(size_t i =0; i!= inc; ++i) ++ret;
       return ret;
     }else{
-      for(int i =0; i!= -inc; ++i) --ret;
+      for(size_t i =0; i!= -inc; ++i) --ret;
       return ret;
     }
   }
 
   mdindex operator-(const int &inc) const{
-    mdindex ret=*this;
-    if(inc >=0){
-      for(int i =0; i!= inc; ++i) --ret;
-      return ret;
-    }else{
-      for(int i =0; i!= -inc; ++i) ++ret;
-      return ret;
-    }
+    return (*this)+(-inc);
   }
 
   mdindex& operator+=(const int &inc) {
     if(inc >=0){
-      for(int i =0; i!= inc; ++i) ++(*this);
+      for(size_t i =0; i!= inc; ++i) ++(*this);
       return *this;
     }else{
-      for(int i =0; i!= -inc; ++i) --(*this);
+      for(size_t i =0; i!= -inc; ++i) --(*this);
       return *this;
     }
   }
 
   mdindex& operator-=(const int &inc) {
-    if(inc >=0){
-      for(int i =0; i!= inc; ++i) --(*this);
-      return *this;
-    }else{
-      for(int i =0; i!= -inc; ++i) ++(*this);
-      return *this;
-    }
+    return (*this)+=(-inc);
   }
 
 };
