@@ -6,6 +6,7 @@ class mdindex{
   const std::vector <size_t> max_; 
   // max number of each dimension, staring from 0
   std::vector <size_t> current_; 
+  size_t overflow_=0;
   // current indices
   size_t totalindex_;
   public:
@@ -17,6 +18,10 @@ class mdindex{
   void reset(){
     for(size_t i=0; i!=current_.size(); ++i)current_[i]=0;
     totalindex_=0;
+  }
+
+  const size_t & overflow() const{
+    return overflow_;
   }
 
   const size_t & current() const{
@@ -61,12 +66,12 @@ class mdindex{
           current_[i]=0;
         }
       }
-      throw std::runtime_error("RUNTIME ERROR: OUT OF RANGE!");
+      ++overflow_;
+      throw std::runtime_error("WARNING: OUT OF RANGE!");
     }catch(std::runtime_error e){
-      std::cerr << "Max size: " ;
+      std::cerr << e.what()<<"   Max size: " ;
       for(int i=0; i!=max_.size(); ++i) std::cerr << max_[i] <<"  " ;
       std::cerr << std::endl;
-      throw;
     }
 
   }
@@ -88,12 +93,12 @@ class mdindex{
           current_[i]=max_[i]-1;
         }
       }
-      throw std::runtime_error("RUNTIME ERROR: OUT OF RANGE!");
+      --overflow_;
+      throw std::runtime_error("WARNING: OUT OF RANGE!");
     }catch(std::runtime_error e){
-      std::cerr << "Max size: " ;
+      std::cerr << e.what()<<"   Max size: " ;
       for(size_t i=0; i!=max_.size(); ++i) std::cerr << max_[i] <<"  " ;
       std::cerr << std::endl;
-      throw;
     }
   }
 

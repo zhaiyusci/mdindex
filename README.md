@@ -62,6 +62,16 @@ Set all the indices to 0
 
 You should notice as we are using C++, the index runs from `0` to `(max-1)`.
 If it runs out of range, a runtime error is thrown.
+However, I choose not stop the program for some reason.
+For example, you type
+```cpp
+for(mdindex in(max); in.current()!=in.max(); ++i);
+```
+This will work, but at the last cycle, a warning will be thrown.
+
+You can also use `in.overflow()` to find whether it is overflowed.
+It is safe only when this value equals 0!
+
 
 
 ## Check the current index

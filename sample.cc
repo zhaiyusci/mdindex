@@ -15,14 +15,17 @@ int main(){
 
 
   std::cout << "increment operator" << std::endl;
-  for(int i=0; i!=23; ++i){
-    std::cout << i  << ":   " 
+  for(int i=0; i!=24; ++i){
+    std::cout << in.current()  << ":   " 
       << in.current(0) <<"   "
       << in.current(1) <<"   "
       << in.current(2) << std::endl;
     // std::cout << __FILE__ << "  " << __LINE__ << std::endl;
     ++in;
   }
+
+  return 0;
+
   std::cout << "increment operator" << std::endl;
   for(int i=0; i!=23; ++i){
     std::cout << in.current() << ":   " 
