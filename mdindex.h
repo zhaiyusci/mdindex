@@ -37,7 +37,7 @@ class mdindex{
 
     size_t max() const {
       unsigned int tmp(1);
-      for(int i=0; i!= max_.size(); ++i) tmp*=max_[i];
+      for(size_t i=0; i!= max_.size(); ++i) tmp*=max_[i];
       return tmp;
     }
 
@@ -50,9 +50,9 @@ class mdindex{
         if(rhs.max_!=this->max_) 
           throw std::runtime_error("RUNTIME ERROR: DIMENSION DOES NOT MATCH!");
         val_=rhs.val_;
-      }catch(std::runtime_error e){
+      }catch(std::runtime_error& e){
         std::cerr << "Max size: " ;
-        for(int i=0; i!=max_.size(); ++i) std::cerr << max_[i] <<"  " ;
+        for(size_t i=0; i!=max_.size(); ++i) std::cerr << max_[i] <<"  " ;
         std::cerr << std::endl;
         throw;
       }
