@@ -76,12 +76,12 @@ It is safe only when this value equals 0!
 
 ## Check the current index
 ```cpp
-mdindex::current();
+mdindex::get();
 ```
 returns the current overall index.
 
 ```cpp
-mdindex::current(unsigned int i);
+mdindex::get(unsigned int i);
 ```
 returns the current ith dimension index.
 ```cpp
