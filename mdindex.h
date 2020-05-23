@@ -66,7 +66,7 @@ class mdindex{
     }
 
     mdindex& operator++(){ // ++index
-      for(auto i=0; i!=val_.size(); ++i){
+      for(size_t i=0; i!=val_.size(); ++i){
         ++val_[i];
         if(val_[i]<max_[i]){
           ++totalindex_;
@@ -108,10 +108,10 @@ class mdindex{
     mdindex operator+(const int &inc) const{
       mdindex ret=*this;
       if(inc >=0){
-        for(size_t i =0; i!= inc; ++i) ++ret;
+        for(int i =0; i!= inc; ++i) ++ret;
         return ret;
       }else{
-        for(size_t i =0; i!= -inc; ++i) --ret;
+        for(int i =0; i!= -inc; ++i) --ret;
         return ret;
       }
     }
@@ -122,10 +122,10 @@ class mdindex{
 
     mdindex& operator+=(const int &inc) {
       if(inc >=0){
-        for(size_t i =0; i!= inc; ++i) ++(*this);
+        for(int i =0; i!= inc; ++i) ++(*this);
         return *this;
       }else{
-        for(size_t i =0; i!= -inc; ++i) --(*this);
+        for(int i =0; i!= -inc; ++i) --(*this);
         return *this;
       }
     }

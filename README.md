@@ -65,7 +65,7 @@ If it runs out of range, a runtime error is thrown.
 However, I choose not stop the program for some reason.
 For example, you type
 ```cpp
-for(mdindex in(max); in.current()!=in.max(); ++i);
+for(mdindex in(max); in.get()!=in.max(); ++i);
 ```
 This will work, but at the last cycle, a warning will be thrown.
 
